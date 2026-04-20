@@ -17,8 +17,9 @@ public class StatueInfoPanelController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void EnablePanelWithText(string text)
+    public void EnablePanelWithText(string text, StatueController statue)
     {
+        statue.onStatueDeleted += HidePanel;
         infoText.text = text;
         gameObject.SetActive(true);
     }

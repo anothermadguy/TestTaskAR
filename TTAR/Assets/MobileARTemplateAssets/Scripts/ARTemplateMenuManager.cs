@@ -40,6 +40,19 @@ namespace UnityEngine.XR.Templates.AR
             get => m_DeleteButton;
             set => m_DeleteButton = value;
         }
+        
+        [SerializeField]
+        [Tooltip("Button that deletes a selected object.")]
+        Button m_DeleteAllButton;
+
+        /// <summary>
+        /// Button that deletes a selected object.
+        /// </summary>
+        public Button deleteAllButton
+        {
+            get => m_DeleteAllButton;
+            set => m_DeleteAllButton = value;
+        }
 
         [SerializeField]
         [Tooltip("The menu with all the creatable objects.")]
@@ -161,6 +174,8 @@ namespace UnityEngine.XR.Templates.AR
         [SerializeField]
         [Tooltip("The AR debug menu.")]
         ARDebugMenu m_ARDebugMenu;
+        
+        private List<GameObject> m_spawnedObjects = new List<GameObject>();
 
         /// <summary>
         /// The AR debug menu.
@@ -231,6 +246,7 @@ namespace UnityEngine.XR.Templates.AR
             m_CreateButton.onClick.AddListener(ShowMenu);
             m_CancelButton.onClick.AddListener(HideMenu);
             m_DeleteButton.onClick.AddListener(DeleteFocusedObject);
+            m_DeleteAllButton.onClick.AddListener(DeleteAllObjects);
             m_PlaneManager.trackablesChanged.AddListener(OnPlaneChanged);
         }
 
@@ -243,6 +259,7 @@ namespace UnityEngine.XR.Templates.AR
             m_CreateButton.onClick.RemoveListener(ShowMenu);
             m_CancelButton.onClick.RemoveListener(HideMenu);
             m_DeleteButton.onClick.RemoveListener(DeleteFocusedObject);
+            m_DeleteAllButton.onClick.RemoveListener(DeleteAllObjects);
             m_PlaneManager.trackablesChanged.RemoveListener(OnPlaneChanged);
         }
 
@@ -265,6 +282,8 @@ namespace UnityEngine.XR.Templates.AR
 
             m_DebugMenuSlider.value = m_ShowDebugMenu ? 1 : 0;
             m_DebugPlaneSlider.value = m_VisualizePlanes ? 1 : 0;
+            
+            m_ObjectSpawner.objectSpawned += (obj) => m_spawnedObjects.Add(obj);
         }
 
         /// <summary>
@@ -337,6 +356,15 @@ namespace UnityEngine.XR.Templates.AR
             }
 
             HideMenu();
+        }
+
+        void DeleteAllObjects()
+        {
+            foreach (var spawnedObject in m_spawnedObjects)
+            {
+                Destroy(spawnedObject.gameObject);
+            }
+            m_spawnedObjects.Clear();
         }
 
         void ShowMenu()
@@ -455,6 +483,8 @@ namespace UnityEngine.XR.Templates.AR
             if (currentFocusedObject != null)
             {
                 Destroy(currentFocusedObject.transform.gameObject);
+                if(m_spawnedObjects.Contains(currentFocusedObject.transform.gameObject))
+                    m_spawnedObjects.Remove(currentFocusedObject.transform.gameObject);
             }
         }
 

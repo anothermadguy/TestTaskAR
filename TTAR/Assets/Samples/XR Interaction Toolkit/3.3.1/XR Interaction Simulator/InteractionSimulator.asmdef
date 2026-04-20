@@ -1,0 +1,41 @@
+{
+    "name": "Unity.XR.Interaction.Toolkit.Samples.InteractionSimulator",
+    "rootNamespace": "",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:dc960734dc080426fa6612f1c5fe95f3",
+        "GUID:fe685ec1767f73d42b749ea8045bfe43",
+        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
+        "GUID:2bafac87e7f4b9b418d9448d219b01ab"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "Unity",
+            "expression": "[2020.3.45,2021.1)",
+            "define": "HAS_FIND_FIRST_OBJECT_BY_TYPE"
+        },
+        {
+            "name": "Unity",
+            "expression": "[2021.3.18,2022.1.0)",
+            "define": "HAS_FIND_FIRST_OBJECT_BY_TYPE"
+        },
+        {
+            "name": "Unity",
+            "expression": "[2022.2.5,2022.3)",
+            "define": "HAS_FIND_FIRST_OBJECT_BY_TYPE"
+        },
+        {
+            "name": "Unity",
+            "expression": "2022.3.0",
+            "define": "HAS_FIND_FIRST_OBJECT_BY_TYPE"
+        }
+    ],
+    "noEngineReferences": false
+}

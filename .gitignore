@@ -6,8 +6,6 @@
 /TTAR/[Ll]ibrary/
 /TTAR/[Tt]emp/
 /TTAR/[Oo]bj/
-/TTAR/[Bb]uild/
-/TTAR/[Bb]uilds/
 /TTAR/[Ll]ogs/
 /TTAR/[Uu]ser[Ss]ettings/
 *.log
@@ -67,7 +65,6 @@ sysinfo.txt
 mono_crash.*
 
 # Builds
-*.apk
 *.aab
 *.unitypackage
 *.unitypackage.meta
